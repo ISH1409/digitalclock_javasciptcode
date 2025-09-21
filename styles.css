@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #8ec5fc 0%, #e0c3fc 100%);
+  font-family: 'Roboto', sans-serif;
+}
+
+.container {
+  background: rgba(255,255,255,0.13);
+  backdrop-filter: blur(17px) saturate(195%);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(31,38,135,0.27);
+  padding: 32px 12px;
+  width: 350px;
+  max-width: 95vw;
+}
+
+.form-box {
+  width: 100%;
+  position: relative;
+}
+
+.btn-box {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.login-btn, .signup-btn {
+  flex: 1;
+  text-align: center;
+  padding: 12px 0;
+  cursor: pointer;
+  font-weight: 700;
+  color: #555;
+  z-index: 2;
+  transition: color 0.2s;
+}
+
+.slider {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50%;
+  height: 4px;
+  background: linear-gradient(90deg, #43e97b, #38f9d7);
+  border-radius: 2px;
+  transition: left 0.3s;
+  z-index: 1;
+}
+
+/* Forms wrapper for animation */
+.forms {
+  position: relative;
+  min-height: 340px;
+}
+
+.login-form,
+.signup-form {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  transition: opacity 0.35s, transform 0.35s;
+  background: none;
+}
+
+.login-form {
+  z-index: 3;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.signup-form {
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(22px);
+}
+
+/* Toggle: when checked, show signup form */
+#toggle_form:checked ~ .form-box .slider {
+  left: 50%;
+}
+#toggle_form:checked ~ .form-box .login-btn {
+  color: #555;
+}
+#toggle_form:checked ~ .form-box .signup-btn {
+  color: #222;
+}
+#toggle_form:checked ~ .form-box .login-form {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-22px);
+  z-index: 1;
+}
+#toggle_form:checked ~ .form-box .signup-form {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+  z-index: 3;
+}
+
+.form-box form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #222;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+input[type="text"], 
+input[type="email"],
+input[type="password"] {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.92);
+  font-size: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+  margin-bottom: 4px;
+}
+
+input:focus {
+  background: #fff;
+  outline: 2px solid #38f9d7;
+}
+
+button[type="submit"] {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg,#43e97b 0%, #38f9d7 100%);
+  color: #222;
+  font-weight: 700;
+  font-size: 17px;
+  box-shadow: 0 4px 18px -4px #38f9d7;
+  cursor: pointer;
+  transition: filter 0.16s;
+}
+button[type="submit"]:hover {
+  filter: brightness(1.07);
+}
+
+/* Responsive */
+@media (max-width:420px) {
+  .container {
+    padding: 14px 2px;
+  }
+  .form-box { font-size: 15px; }
+}
